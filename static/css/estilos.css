@@ -597,4 +597,21 @@ body.modo-oscuro #input-busqueda::placeholder {
 body.modo-oscuro select option {
     background-color: #1e293b !important;
     color: #f8fafc !important;
+@media (max-width: 768px) {
+    /* Hace que los contenedores o tarjetas ocupen todo el ancho en celulares */
+    .grid-equipos, .contenedor-tarjetas, .tarjetas-container {
+        grid-template-columns: 1fr !important;
+        display: flex !important;
+        flex-direction: column !important;
+        padding: 10px !important;
+    }
+
+    /* Asegura que las imágenes no se salgan de la pantalla del celular */
+    img, .tarjeta img {
+        width: 100% !important;
+        height: auto !important;
+        max-height: 250px;
+        object-fit: cover;
+    }
+}
 }
