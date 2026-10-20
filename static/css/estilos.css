@@ -140,6 +140,7 @@ p.descripcion-categoria,
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+   justify-content: center;
 }
 
 .tarjeta {
@@ -151,6 +152,8 @@ p.descripcion-categoria,
     flex-direction: column;
     border: 1px solid #e2e8f0;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+   width: calc(33.333% - 20px); 
+    min-width: 300px;
 }
 
 .tarjeta:hover {
