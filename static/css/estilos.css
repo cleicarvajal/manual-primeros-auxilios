@@ -137,11 +137,10 @@ p.descripcion-categoria,
    6. TARJETAS
    ========================================== */
 .contenedor-tarjetas {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(22%, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 20px;
 }
-
 .tarjeta {
     background-color: #ffffff;
     border-radius: 20px;
