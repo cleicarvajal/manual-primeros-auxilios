@@ -1,7 +1,7 @@
 /* ==========================================
    1. ESTILOS GENERALES Y RESET
    ========================================== */
-   * {
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -141,6 +141,7 @@ p.descripcion-categoria,
     flex-wrap: wrap;
     gap: 20px;
 }
+
 .tarjeta {
     background-color: #ffffff;
     border-radius: 20px;
@@ -596,29 +597,74 @@ body.modo-oscuro #input-busqueda::placeholder {
 body.modo-oscuro select option {
     background-color: #1e293b !important;
     color: #f8fafc !important;
+}
+
+/* ==========================================
+   13. ADAPTABILIDAD RESPONSIVE (MÓVILES Y TABLETS)
+   ========================================== */
+
+/* Para Tablets y pantallas medianas (hasta 1024px) */
+@media (max-width: 1024px) {
+    .contenedor-tarjetas {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(45%, 1fr)) !important;
+        gap: 15px;
+    }
+}
+
+/* Para Teléfonos móviles (hasta 768px) */
 @media (max-width: 768px) {
-    /* Apagamos el grid automático de la PC y ponemos una sola columna */
+    /* Reducir títulos grandes para que no rompan la pantalla */
+    .encabezado h1 {
+        font-size: 2.1rem;
+    }
+
+    .encabezado {
+        padding: 20px 10px;
+    }
+
+    /* Botón de modo oscuro más cómodo arriba a la derecha */
+    .btn-oscuro {
+        top: 10px;
+        right: 10px;
+        padding: 6px 10px;
+        font-size: 0.8rem;
+    }
+
+    /* Apagar cualquier grid de PC y forzar columna única vertical */
     .contenedor-tarjetas {
         display: flex !important;
         flex-direction: column !important;
         grid-template-columns: none !important;
         width: 100% !important;
-        padding: 10px !important;
+        padding: 5px !important;
     }
 
-    /* Forzamos a cada tarjeta a tomar el 100% del ancho */
+    /* Cada tarjeta ocupa el 100% del ancho del teléfono */
     .tarjeta {
         width: 100% !important;
         max-width: 100% !important;
         margin-bottom: 20px !important;
     }
 
-    /* Ajustamos la imagen para móviles */
+    /* Ajustar la altura de las imágenes en pantallas chicas */
     .tarjeta img {
         width: 100% !important;
         height: auto !important;
         max-height: 220px !important;
         object-fit: cover !important;
     }
-}
 
+    /* Adaptar los buscadores y filtros para que se apilen bien */
+    .contenedor-buscador {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .contenedor-buscador input,
+    .select-filtro,
+    .select-sintoma {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+}
