@@ -597,34 +597,8 @@ body.modo-oscuro #input-busqueda::placeholder {
 body.modo-oscuro select option {
     background-color: #1e293b !important;
     color: #f8fafc !important;
-/* ====================================================
-   ADAPTABILIDAD PARA TELÉFONOS MÓVILES (RESPONSIVE)
-   ==================================================== */
 @media (max-width: 768px) {
     /* Contenedor de tarjetas en una sola columna vertical */
-    .contenedor-tarjetas {
-        display: flex !important;
-        flex-direction: column !important;
-        width: 100% !important;
-        padding: 10px !important;
-    }
-
-    /* Cada tarjeta individual ocupa todo el ancho de la pantalla */
-    .contenedor-tarjetas .tarjeta {
-        width: 100% !important;
-        max-width: 100% !important;
-        margin-bottom: 20px !important;
-    }
-
-    /* Asegura que las imágenes de las tarjetas se adapten bien */
-    .tarjeta img {
-        width: 100% !important;
-        height: auto !important;
-        max-height: 220px;
-        object-fit: cover;
-    }
-   @media (max-width: 768px) {
-    /* Fuerza al contenedor de tarjetas a volverse una columna vertical */
     .contenedor-tarjetas {
         display: flex !important;
         flex-direction: column !important;
@@ -634,7 +608,7 @@ body.modo-oscuro select option {
         box-sizing: border-box !important;
     }
 
-    /* Fuerza a cada tarjeta a ocupar todo el ancho disponible */
+    /* Cada tarjeta individual ocupa todo el ancho de la pantalla */
     .contenedor-tarjetas .tarjeta,
     .tarjeta {
         width: 100% !important;
@@ -652,4 +626,4 @@ body.modo-oscuro select option {
         object-fit: cover !important;
     }
 }
-    
+
