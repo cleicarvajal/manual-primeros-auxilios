@@ -139,8 +139,8 @@ p.descripcion-categoria,
 .contenedor-tarjetas {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
-   justify-content: center;
+    gap: 24px;
+    justify-content: flex-start;
 }
 
 .tarjeta {
@@ -152,8 +152,11 @@ p.descripcion-categoria,
     flex-direction: column;
     border: 1px solid #e2e8f0;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-   width: calc(33.333% - 20px); 
-    min-width: 300px;
+
+    /* Tamaño para PC: Distribuye 3 tarjetas por fila en pantallas de computadora */
+    width: calc(33.333% - 16px);
+    max-width: 380px;
+    box-sizing: border-box;
 }
 
 .tarjeta:hover {
@@ -163,7 +166,7 @@ p.descripcion-categoria,
 
 .tarjeta img {
     width: 100%;
-    height: 300px;
+    height: 220px;
     object-fit: cover;
     display: block;
 }
