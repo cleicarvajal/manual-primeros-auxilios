@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual de Primeros Auxilios Técnicos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos.css') }}">
+</head>
+<body>
+
+<header class="encabezado">
+    <div class="contenedor">
+        <h1>Manual de Primeros Auxilios Técnicos</h1>
+        <p>Protección y Cuidado de Equipos Eléctricos y Electrónicos Domésticos</p>
+        <button id="btn-modo-oscuro" class="btn-oscuro" title="Cambiar Modo Oscuro/Claro">
+            <span id="icono-modo">🌙</span> Modo Oscuro
+        </button>
+        <!-- PANEL DE BÚSQUEDA Y FILTROS MULTIPLES -->
+        <div class="contenedor-buscador">
+            <input type="text" id="input-busqueda" placeholder="Buscar electrodoméstico...">
+
+            <!-- Filtro por Categoria -->
+            <select id="select-categoria" class="select-filtro">
+                <option value="">-- Todas las Categorías --</option>
+                {% for categoria in categorias %}
+                <option value="{{ categoria.id if categoria.id else 'cat-' ~ loop.index }}">{{ categoria.titulo }}</option>
+                {% endfor %}
+            </select>
+
+            <!-- Filtro por Síntoma -->
+            <select id="select-sintoma" class="select-filtro">
+                <option value="">-- Filtrar por Síntoma --</option>
+                <option value="no-enciende">No enciende / Muerto totalmente</option>
+                <option value="humo-olor">Sale humo o huele a quemado</option>
+                <option value="chispas">Genera chispas al conectar</option>
+                <option value="calienta-mucho">Se calienta demasiado / Apagón térmico</option>
+                <option value="ruido">Ruidos extraños o vibraciones</option>
+                <option value="no retiene carga">La bateria del dispositivo dura muy poco o no adquiere carga</option>
+            </select>
+
+            <!-- Filtro por Nivel de Riesgo -->
+            <select id="select-riesgo" class="select-filtro">
+                <option value="">-- Nivel de Riesgo --</option>
+                <option value="alto">⚠️ Riesgo Alto / Crítico</option>
+                <option value="medio">⚡ Riesgo Medio</option>
+                <option value="bajo">🟢 Riesgo Bajo</option>
+            </select>
+
+            <!-- Botón para Limpiar Filtros -->
+            <button id="btn-limpiar" class="btn-limpiar" type="button">Limpiar Filtros</button>
+        </div>
+
+        <nav class="navegacion-principal">
+            <ul>
+                <li><a href="#marco-teorico" class="btn-marco-teorico">Marco Teórico</a></li>
+                <li><a href="#terminos-basicos" class="btn-marco-teorico">Términos Básicos</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main class="contenedor">
+    {% for categoria in categorias %}
+    {% set cat_id = categoria.id if categoria.id else 'cat-' ~ loop.index %}
+    <section class="seccion-categoria" id="{{ cat_id }}" data-cat-id="{{ cat_id }}">
+        <h2 class="titulo-categoria">{{ categoria.titulo }}</h2>
+        <p class="descripcion-categoria">{{ categoria.descripcion }}</p>
+
+        <div class="contenedor-tarjetas">
+            {% for equipo in categoria.equipos %}
+            <div class="tarjeta" 
+            data-nombre="{{ equipo.nombre | lower }}" 
+            data-sintomas="{{ equipo.sintoma_clave }}"
+            data-riesgo="{{ equipo.riesgo | default('medio') | lower }}">
+                
+                {% if equipo.imagen %}
+                <img src="{{ equipo.imagen }}" alt="{{ equipo.nombre }}">
+                {% endif %}
+
+                <div class="tarjeta-contenido">
+                    <h3>{{ equipo.nombre }}</h3>
+
+                    {% if equipo.alerta %}
+                    <p class="alerta">
+                        <strong>⚠️ Alerta:</strong> {{ equipo.alerta }}
+                    </p>
+                    {% endif %}
+
+                    {% if equipo.problematica %}
+                    <p class="problematica">
+                        <strong>Problemática ante cortes eléctricos:</strong><br>
+                        {{ equipo.problematica }}
+                    </p>
+                    {% endif %}
+
+                    {% if equipo.solucion %}
+                    <div class="caja-solucion">
+                        <strong>¿Qué hacer? (Primeros Auxilios):</strong><br>
+                        {{ equipo.solucion }}
+                    </div>
+                    {% endif %}
+                </div>
+
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    {% endfor %}
+
+
+    <section id="marco-teorico" class="seccion-teorica">
+        <div class="encabezado-teorico">
+            <h2>Marco Teórico y Fundamentos Técnicos</h2>
+            <p>Sustento conceptual del proyecto socio-tecnológico para la protección del patrimonio tecnológico comunitario.</p>
+        </div>
+
+        <div class="grid-teorica">
+            <div class="tarjeta-teorica">
+                <h3>Soporte Técnico Nivel 0</h3>
+                <p>El manual web aplica el principio de <strong>Soporte Técnico Nivel 0</strong>, donde la plataforma actúa como mediador didáctico para que el usuario identifique y prevenga fallas comunes sin requerir herramientas físicas en etapas iniciales.</p>
+            </div>
+
+            <div class="tarjeta-teorica">
+                <h3>Protección Eléctrica y Riesgos</h3>
+                <p>Las fluctuaciones, picos de tensión y variaciones de voltaje representan la principal causa de degradación térmica y cortocircuitos en fuentes de poder y semiconductores. El protocolo promueve la desconexión inmediata y la verificación de reguladores de voltaje o UPS.</p>
+            </div>
+
+            <div class="tarjeta-teorica">
+                <h3>Mantenimiento Preventivo vs. Correctivo</h3>
+                <p>El mantenimiento preventivo comprende acciones planificadas de limpieza física, remoción de polvo y control del flujo térmico para evitar el estrangulamiento térmico (<em>Thermal Throttling</em>), extendiendo la vida útil operativa del hardware doméstico.</p>
+            </div>
+
+            <div class="tarjeta-teorica">
+                <h3>Soberanía y Alfabetización Tecnológica</h3>
+                <p>Diseñado bajo los principios de soberanía tecnológica y el marco del Decreto N° 3.390, capacita a la comunidad de Cumbres Andinas II (Rubio, Estado Táchira) para autogestionar la protección de sus recursos electrónicos.</p>
+            </div>
+
+            <div class="tarjeta-teorica">
+                <h3>Disipación Térmica y Termodinámica</h3>
+                <p>Analiza cómo la acumulación de polvo actúa como aislante térmico en procesadores y fuentes de poder, incrementando la temperatura de trabajo y acelerando el deterioro de la pasta térmica hasta provocar apagados de emergencia.</p>
+            </div>
+
+            <div class="tarjeta-teorica">
+                <h3>Arquitectura Cliente-Servidor Interactiva</h3>
+                <p>Sustenta la integración de la interfaz gráfica (HTML5/CSS3) con la lógica en Python, permitiendo procesar las entradas del usuario en tiempo real para ofrecer respuestas personalizadas ante las fallas de cada equipo.</p>
+            </div>
+        </div>
+    </section>
+    <section id="terminos-basicos" class="seccion-terminos">
+        <div class="encabezado-teorico">
+            <h2>Definición de Términos Básicos</h2>
+            <p>Glosario conceptual del proyecto para facilitar la comprensión de la plataforma web y la protección de hardware.</p>
+        </div>
+
+        <div class="grid-terminos">
+            <div class="tarjeta-termino">
+                <h3>Algoritmo de Asistencia</h3>
+                <p>Secuencia ordenada de instrucciones lógicas y pasos estructurados que guían de forma interactiva al usuario común en la detección y resolución de fallas técnicas menores, facilitando un diagnóstico rápido sin requerir conocimientos avanzados en informática.</p>
+            </div>
+
+            <div class="tarjeta-termino">
+                <h3>Arquitectura de Hardware</h3>
+                <p>Configuración física, diseño y organización interna de los componentes electrónicos y mecánicos que integran un computador, determinando la manera en que interactúan la fuente de poder, la tarjeta madre y los periféricos de procesamiento.</p>
+            </div>
+
+            <div class="tarjeta-termino">
+                <h3>Asistente Digital</h3>
+                <p>Interfaz interactiva diseñada para proveer respuestas automatizadas y soluciones guiadas a los usuarios finales frente a una problemática determinada, utilizando rutas lógicas preprogramadas para facilitar el aprendizaje autónomo dentro de una plataforma web.</p>
+            </div>
+
+            <div class="tarjeta-termino">
+                <h3>Código Fuente</h3>
+                <p>Conjunto de líneas de texto e instrucciones lógicas escritas mediante un lenguaje de programación específico, el cual es desarrollado por los programadores para estructurar las funciones y el comportamiento operativo de una plataforma digital.</p>
+            </div>
+
+            <div class="tarjeta-termino">
+                <h3>Componente Electrónico</h3>
+                <p>Dispositivo físico que forma parte de un circuito eléctrico integrado dentro del hardware de un computador, cuya función principal es regular, transformar o direccionar la corriente eléctrica para el correcto funcionamiento de las placas del sistema.</p>
+            </div>
+
+            <div class="tarjeta-termino">
+                <h3>Desarrollo Web</h3>
+                <p>Proceso técnico que abarca la planificación, diseño, programación e implementación de sitios y aplicaciones que se ejecutan en internet, involucrando tanto la estructura visual externa como la lógica de datos interna que procesa el servidor.</p>
+            </div>
+
+            <div class="tarjeta-termino">
+                <h3>HTML5 (Lenguaje de Marcado)</h3>
+                <p>Estándar tecnológico que define la estructura base y la organización del contenido esencial de las páginas web a través de etiquetas lógicas, permitiendo la correcta visualización de textos, imágenes y enlaces en el navegador.</p>
+            </div>
+
+            <div class="tarjeta-termino">
+                <h3>Interfaz Gráfica</h3>
+                <p>Entorno visual e intuitivo compuesto por botones, menús, imágenes e íconos interactivos que facilita la comunicación directa entre el usuario residencial y el sistema informático, haciendo que la navegación por la plataforma sea sencilla.</p>
+            </div>
+
+            <div class="tarjeta-termino">
+                <h3>Mantenimiento Preventivo</h3>
+                <p>Conjunto de técnicas, rutinas de limpieza física y revisiones periódicas aplicadas directamente a los componentes de un equipo informático con el objetivo fundamental de anticipar posibles fallas técnicas y prolongar la vida útil de los dispositivos.</p>
+            </div>
+
+            <div class="tarjeta-termino">
+                <h3>Módulo Interactivo</h3>
+                <p>Bloque funcional de software programado para reaccionar ante las acciones directas del usuario en tiempo real, permitiendo una experiencia de navegación dinámica donde la plataforma responde de forma personalizada según los datos introducidos.</p>
+            </div>
+
+            <div class="tarjeta-termino">
+                <h3>Navegador Web</h3>
+                <p>Aplicación de software que actúa como herramienta de comunicación para interpretar el código de los sitios web y mostrar las interfaces gráficas en pantalla, permitiendo a los ciudadanos interactuar con la información almacenada en internet.</p>
+            </div>
+
+            <div class="tarjeta-termino">
+                <h3>Protección Eléctrica</h3>
+                <p>Conjunto de dispositivos externos y normativas técnicas de seguridad orientadas a resguardar los componentes internos del hardware contra sobrecargas, variaciones de voltaje y apagones repentinos que puedan comprometer la integridad de los circuitos domésticos.</p>
+            </div>
+
+            <div class="tarjeta-termino">
+                <h3>Protocolo de Seguridad</h3>
+                <p>Conjunto de reglas, directrices y acciones estandarizadas que se deben seguir de forma estricta para resguardar la integridad de los equipos físicos ante situaciones de riesgo mecánico, manipulación inadecuada o fallas en el suministro de energía.</p>
+            </div>
+
+            <div class="tarjeta-termino">
+                <h3>Usabilidad Tecnológica</h3>
+                <p>Atributo de calidad que mide la facilidad, eficiencia y nivel de satisfacción con la que una persona común puede interactuar y entender un sistema informático, asegurando que los contenidos didácticos cumplan eficazmente sus objetivos educativos.</p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="pie-pagina">
+    <p>© 2026 UPTA Táchira - Trayecto I de Informática</p>
+    <p>Desarrollado para la Comunidad de Cumbres Andinas II, Parte Baja - Rubio, Táchira</p>
+</footer>
+
+<!-- Botón flotante para subir -->
+<button id="btn-subir" class="btn-subir" title="Volver arriba">
+    ↑
+</button>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

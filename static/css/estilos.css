@@ -1,0 +1,600 @@
+/* ==========================================
+   1. ESTILOS GENERALES Y RESET
+   ========================================== */
+   * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f1f5f9;
+    color: #334155;
+    line-height: 1.5;
+}
+
+/* ==========================================
+   2. ENCABEZADO
+   ========================================== */
+.encabezado {
+    position: relative;
+    text-align: center;
+    background: linear-gradient(135deg, #1e3a8a 0%, #0284c7 100%);
+    color: white;
+    padding: 30px 20px;
+    margin-bottom: 25px;
+}
+
+.encabezado h1 {
+    font-size: 3rem;
+    margin-bottom: 9px;
+}
+
+/* ==========================================
+   3. CONTENEDOR PRINCIPAL
+   ========================================== */
+.contenedor {
+    max-width: 100%;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ==========================================
+   4. BUSCADOR Y FILTROS
+   ========================================== */
+.contenedor-buscador {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.contenedor-buscador input,
+.select-filtro,
+.select-sintoma {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    outline: none;
+    background-color: #ffffff;
+    color: #333;
+    transition: border-color 0.3s;
+}
+
+.contenedor-buscador input {
+    width: 100%;
+    max-width: 400px;
+}
+
+.contenedor-buscador input:focus,
+.select-sintoma:focus {
+    border-color: #0d47a1;
+}
+
+.select-sintoma {
+    border-radius: 20px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.btn-limpiar {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+
+.btn-limpiar:hover {
+    background-color: #c0392b;
+}
+
+/* ==========================================
+   5. SECCIONES Y CATEGORÍAS
+   ========================================== */
+.seccion-categoria {
+    margin-bottom: 45px;
+}
+
+.seccion-categoria p,
+p.descripcion-categoria,
+.subtitulo-seccion {
+    color: #334155 !important;
+    font-weight: 500 !important;
+    font-size: 1.3rem;
+    margin-left: 6px;
+    margin-bottom: 25px;
+}
+
+.titulo-categoria {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    background: linear-gradient(135deg, #1e3a8a 0%, #0284c7 100%);
+    padding: 12px 20px;
+    border-radius: 10px;
+    border-left: 6px solid #38bdf8;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    margin-bottom: 8px;
+    border-bottom: none;
+}
+
+/* ==========================================
+   6. TARJETAS
+   ========================================== */
+.contenedor-tarjetas {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(22%, 1fr));
+    gap: 20px;
+}
+
+.tarjeta {
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #e2e8f0;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tarjeta:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+}
+
+.tarjeta img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    display: block;
+}
+
+.tarjeta-contenido {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.tarjeta-contenido h3 {
+    font-size: 1.8rem;
+    color: #0f172a;
+    margin-bottom: 15px;
+}
+
+.problematica {
+    font-size: 1.3rem;
+    color: #334155;
+    margin-bottom: 12px;
+}
+
+/* Alertas y Soluciones en Tarjetas */
+.alerta, 
+.alerta-riesgo, 
+[class*="alerta"] {
+    background-color: #fef2f2 !important;
+    border-left: 4px solid #ef4444 !important;
+    color: #991b1b !important;
+    font-weight: 600 !important;
+    font-size: 1rem;
+    padding: 8px;
+    border-radius: 6px;
+    margin-bottom: 12px;
+}
+
+.caja-solucion,
+.que-hacer, 
+[class*="que-hacer"] {
+    background-color: #f0f9ff !important;
+    border-left: 4px solid #0284c7 !important;
+    color: #0c4a6e !important;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    margin-top: auto;
+}
+
+.que-hacer strong, 
+[class*="que-hacer"] strong {
+    color: #0369a1 !important;
+}
+
+.tarjeta-sabias {
+    border-top: 4px solid #0284c7;
+}
+
+.caja-alerta {
+    background-color: #fffbe3;
+    border-left: 3px solid #d97706;
+    padding: 8px 10px;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+/* ==========================================
+   7. BADGES / ETIQUETAS
+   ========================================== */
+.badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    width: fit-content;
+}
+
+.badge-basico {
+    background-color: #e2e8f0;
+    color: #334155;
+}
+
+.badge-medio {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+.badge-alto {
+    background-color: #dbeafe;
+    color: #1e40af;
+}
+
+/* ==========================================
+   8. SECCIÓN TEÓRICA Y TÉRMINOS
+   ========================================== */
+.seccion-teorica,
+.seccion-terminos {
+    margin-top: 35px;
+    margin-bottom: 50px;
+    padding: 30px 20px;
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.encabezado-teorico {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.encabezado-teorico h2 {
+    color: #0d47a1;
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+}
+
+.encabezado-teorico p {
+    color: #555;
+    font-size: 0.95rem;
+}
+
+.grid-teorico,
+.grid-terminos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.tarjeta-teorica,
+.tarjeta-termino {
+    background: #ffffff;
+    padding: 18px;
+    border-left: 5px solid #0d47a1;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tarjeta-teorica:hover,
+.tarjeta-termino:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.14);
+}
+
+.tarjeta-teorica h3,
+.tarjeta-termino h3 {
+    color: #1565c0;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.tarjeta-teorica p,
+.tarjeta-termino p {
+    color: #333;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* ==========================================
+   9. BOTONES Y NAVEGACIÓN
+   ========================================== */
+.navegacion-principal ul {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0 0 0;
+    display: flex;
+    justify-content: center;
+}
+
+.navegacion-principal li {
+    list-style: none;
+}
+
+.contenedor-botones-navegacion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.btn-marco-teorico {
+    display: inline-block;
+    padding: 8px 18px;
+    background-color: #ffffff;
+    color: #0d47a1 !important;
+    font-weight: bold;
+    font-size: 0.95rem;
+    text-decoration: none;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.btn-marco-teorico:hover {
+    background-color: #e3f2fd;
+    transform: translateY(-2px);
+}
+
+.btn-oscuro {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 100;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn-oscuro:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Botón flotante para subir al inicio */
+.btn-subir {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 45px;
+    height: 45px;
+    background-color: #0b4f6c;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.2s ease;
+    z-index: 1000;
+}
+
+.btn-subir:hover {
+    background-color: #083b52;
+    transform: scale(1.1);
+}
+
+.btn-subir.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ==========================================
+   10. VENTANA EMERGENTE (MODAL)
+   ========================================== */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.65);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+
+.modal-contenido {
+    background: #ffffff;
+    width: 100%;
+    max-width: 650px;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 10px;
+    padding: 25px;
+    position: relative;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    animation: modalEntrada 0.3s ease-out;
+}
+
+@keyframes modalEntrada {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-cerrar {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: #757575;
+    cursor: pointer;
+}
+
+.modal-header h2 {
+    color: #0d47a1;
+    margin-bottom: 4px;
+}
+
+.modal-subtitulo {
+    color: #757575;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.bloque-modal {
+    margin-top: 20px;
+}
+
+.bloque-modal h3 {
+    font-size: 1.05rem;
+    color: #1565c0;
+    margin-bottom: 8px;
+}
+
+.alerta-box {
+    background: #fff3e0;
+    border-left: 4px solid #ef6c00;
+    padding: 12px;
+    border-radius: 4px;
+}
+
+.alerta-box h3 {
+    color: #e65100;
+}
+
+.lista-pasos {
+    padding-left: 20px;
+    line-height: 1.6;
+}
+
+.lista-pasos li {
+    margin-bottom: 8px;
+}
+
+/* ==========================================
+   11. PIE DE PÁGINA
+   ========================================== */
+.pie-pagina {
+    text-align: center;
+    padding: 25px;
+    background-color: #0f172a;
+    color: #94a3b8;
+    margin-top: 40px;
+    font-size: 0.88rem;
+}
+
+/* ==========================================
+   12. MODO OSCURO
+   ========================================== */
+body.modo-oscuro {
+    background-color: #0f172a !important;
+    color: #f8fafc !important;
+}
+
+body.modo-oscuro .encabezado {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+    border-bottom: 1px solid #334155 !important;
+}
+
+body.modo-oscuro .tarjeta,
+body.modo-oscuro .tarjeta-teorica,
+body.modo-oscuro .tarjeta-termino,
+body.modo-oscuro .seccion-terminos,
+body.modo-oscuro .seccion-teorica {
+    background-color: #1e293b !important;
+    border: 1px solid #334155 !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5) !important;
+}
+
+body.modo-oscuro .tarjeta h3,
+body.modo-oscuro .tarjeta-teorica h3,
+body.modo-oscuro .tarjeta-termino h3,
+body.modo-oscuro #marco-teorico h2,
+body.modo-oscuro #terminos-basicos h2 {
+    color: #38bdf8 !important;
+}
+
+body.modo-oscuro .tarjeta h4,
+body.modo-oscuro .tarjeta strong {
+    color: #90caf9 !important;
+}
+
+body.modo-oscuro .tarjeta p,
+body.modo-oscuro .tarjeta li,
+body.modo-oscuro .tarjeta-teorica p,
+body.modo-oscuro .tarjeta-termino p,
+body.modo-oscuro p.descripcion-categoria,
+body.modo-oscuro .seccion-categoria p {
+    color: #cbd5e1 !important;
+}
+
+body.modo-oscuro .alerta, 
+body.modo-oscuro .alerta-riesgo, 
+body.modo-oscuro [class*="alerta"] {
+    background-color: #451a03 !important;
+    border-left: 4px solid #f59e0b !important;
+    color: #fef08a !important;
+}
+
+body.modo-oscuro .que-hacer, 
+body.modo-oscuro [class*="que-hacer"] {
+    background-color: #172554 !important;
+    border-left: 4px solid #38bdf8 !important;
+    color: #e0f2fe !important;
+}
+
+body.modo-oscuro .que-hacer strong,
+body.modo-oscuro [class*="que-hacer"] strong {
+    color: #7dd3fc !important;
+}
+
+body.modo-oscuro #input-busqueda,
+body.modo-oscuro .select-filtro,
+body.modo-oscuro select {
+    background-color: #1e293b !important;
+    color: #f8fafc !important;
+    border: 1px solid #475569 !important;
+}
+
+body.modo-oscuro #input-busqueda::placeholder {
+    color: #94a3b8 !important;
+}
+
+body.modo-oscuro select option {
+    background-color: #1e293b !important;
+    color: #f8fafc !important;
+}
